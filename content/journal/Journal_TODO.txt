@@ -1,0 +1,3 @@
+Section specific; Provide a method of presenting personal reviews, possibly present the Googlesheet with the automated journaling system to teach others how to keep track of themselves? 
+
+--Clarify the aim and objective of this section for Day-to-day notes, reflections and learning logs

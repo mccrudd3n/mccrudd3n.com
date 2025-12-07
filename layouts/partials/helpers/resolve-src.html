@@ -1,0 +1,31 @@
+{{- $page := .page -}}
+{{- $src := .src | default "" -}}
+{{- $resolved := "" -}}
+
+{{- if and $page (ne $src "") }}
+  {{- with $page }}
+    {{- with .Resources.GetMatch $src }}
+      {{- $resolved = .RelPermalink -}}
+    {{- else }}
+      {{- $trimmed := strings.TrimPrefix "./" $src }}
+      {{- with .Resources.GetMatch $trimmed }}
+        {{- $resolved = .RelPermalink -}}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+
+  {{- if eq $resolved "" }}
+    {{- if or (strings.HasPrefix $src "http://") (strings.HasPrefix $src "https://") }}
+      {{- $resolved = $src -}}
+    {{- else }}
+      {{- $clean := strings.TrimPrefix "./" $src -}}
+      {{- if strings.HasPrefix $clean "/" }}
+        {{- $resolved = ($clean | relLangURL) -}}
+      {{- else }}
+        {{- $resolved = ((printf "/%s" $clean) | relLangURL) -}}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- $resolved -}}

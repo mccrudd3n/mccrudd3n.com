@@ -1,0 +1,149 @@
+{{ define "main" }}
+  <article class="cert-single">
+    <header class="cert-hero">
+      <p class="back-link"><a href="{{ "/certifications/" | relLangURL }}">← Back to Certifications</a></p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="lede">{{ . }}</p>
+      {{ end }}
+      {{ $cert := .Params.cert }}
+      <dl class="meta">
+        {{ with $cert.issuer }}
+          <div>
+            <dt>Issuer</dt>
+            <dd>{{ . }}</dd>
+          </div>
+        {{ end }}
+        {{ with $cert.awarded }}
+          <div>
+            <dt>Awarded</dt>
+            <dd>{{ . }}</dd>
+          </div>
+        {{ else }}
+          {{ with .Date }}
+            <div>
+              <dt>Awarded</dt>
+              <dd>{{ .Format "02 Jan 2006" }}</dd>
+            </div>
+          {{ end }}
+        {{ end }}
+        {{ with $cert.credential_id }}
+          <div>
+            <dt>Credential ID</dt>
+            <dd>{{ . }}</dd>
+          </div>
+        {{ end }}
+      </dl>
+      {{ with $cert.link }}
+        <p class="cta">
+          <a class="button" href="{{ . }}" target="_blank" rel="noopener">View credential ↗</a>
+        </p>
+      {{ end }}
+    </header>
+
+    <div class="cert-body">
+      <section class="content">{{ .Content }}</section>
+      {{ with .Params.cert.skills }}
+        <aside class="sidebar">
+          <h2>Skills Demonstrated</h2>
+          <ul>
+            {{ range . }}
+              <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </aside>
+      {{ end }}
+    </div>
+  </article>
+
+  <style>
+    .cert-single {
+      display: grid;
+      gap: 2.5rem;
+    }
+    .cert-hero .back-link {
+      margin: 0;
+    }
+    .cert-hero h1 {
+      margin: 0.5rem 0 0.75rem;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+    }
+    .cert-hero .lede {
+      margin: 0 0 1.5rem;
+      color: #4b5563;
+      font-size: 1.05rem;
+    }
+    .cert-hero .meta {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      margin: 0;
+    }
+    .cert-hero .meta div {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .cert-hero dt {
+      margin: 0 0 0.35rem;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+    }
+    .cert-hero dd {
+      margin: 0;
+      font-size: 1rem;
+      color: #111827;
+    }
+    .cert-hero .cta {
+      margin: 1rem 0 0;
+    }
+    .cert-hero .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      background: #4f46e5;
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .cert-hero .button:hover,
+    .cert-hero .button:focus-visible {
+      background: #4338ca;
+    }
+    .cert-body {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cert-body .content > :first-child {
+      margin-top: 0;
+    }
+    .cert-body .sidebar {
+      background: #f8fafc;
+      border: 1px solid #dbeafe;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+    .cert-body .sidebar h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .cert-body .sidebar ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.1rem;
+      color: #1f2937;
+    }
+    @media (min-width: 960px) {
+      .cert-body {
+        grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+        align-items: start;
+      }
+    }
+  </style>
+{{ end }}

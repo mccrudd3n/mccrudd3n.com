@@ -1,0 +1,14 @@
+Things to write a post about to provide an overview of what I am doing and things I have held on the TODO list for too long
+
+Private Repo
+ - Coffee Shop Financial Analysis; Look into the current historic sales and possible data based improvements as well as predicting future customers
+ - BitcoinAnalysis; Analyse Tx information of the blockchain and also input live market price for all transaction to try and visually analyse whats happening within the blockchain and learn how to build a data pipe line
+ - Gekko2; Attempting to build a trading bot using an old codebase and a basic algoritym
+- CryptoMarket scraper
+- Test Bot (Telegram API and bot control tests)
+- Urbit; A test and learning lessons to understand this new concept of a system and tyr to build an app within the eco system.
+
+ Public:
+ - Computer-Science; open source learning and lessons
+ - MonsterHunter_Cli; a project for a C# Course with UHI
+-  

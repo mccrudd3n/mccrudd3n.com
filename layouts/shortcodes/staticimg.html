@@ -1,0 +1,36 @@
+{{- $src := .Get "src" | default "" -}}
+{{- if not $src }}
+  {{- errorf "staticimg shortcode on %q requires a src parameter" .Page.Path -}}
+{{- end }}
+
+{{- $alt := .Get "alt" | default "" -}}
+{{- $title := .Get "title" -}}
+{{- $class := .Get "class" -}}
+{{- $caption := .Get "caption" -}}
+
+{{- $resolved := "" -}}
+
+{{- with .Page }}
+  {{- with .Resources.GetMatch $src }}
+    {{- $resolved = .RelPermalink -}}
+  {{- else }}
+    {{- $trimmed := strings.TrimPrefix "./" $src }}
+    {{- with .Resources.GetMatch $trimmed }}
+      {{- $resolved = .RelPermalink -}}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- if not $resolved }}
+  {{- $clean := strings.TrimPrefix "/" (strings.TrimPrefix "./" $src) -}}
+  {{- $resolved = ((printf "/%s" $clean) | relLangURL) -}}
+{{- end }}
+
+{{- if $caption }}
+  <figure class="staticimg">
+    <img src="{{ $resolved | safeURL }}" alt="{{ $alt | safeHTMLAttr }}" loading="lazy"{{ with $title }} title="{{ . | safeHTMLAttr }}"{{ end }}{{ with $class }} class="{{ . | safeHTMLAttr }}"{{ end }} />
+    <figcaption>{{ $caption | markdownify }}</figcaption>
+  </figure>
+{{- else }}
+  <img src="{{ $resolved | safeURL }}" alt="{{ $alt | safeHTMLAttr }}" loading="lazy"{{ with $title }} title="{{ . | safeHTMLAttr }}"{{ end }}{{ with $class }} class="{{ . | safeHTMLAttr }}"{{ end }} />
+{{- end -}}

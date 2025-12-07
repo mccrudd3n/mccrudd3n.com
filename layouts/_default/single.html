@@ -1,0 +1,43 @@
+{{ define "main" }}
+  <article>
+    <header class="article-header">
+      <p class="back-link">
+        <a href="{{ "/" | relLangURL }}">← Home</a>
+        {{ with .CurrentSection }}
+          · <a href="{{ .RelPermalink }}">Back to {{ .Title }}</a>
+        {{ end }}
+      </p>
+      <div class="article-hero">
+        {{ with .Params.cover.image }}
+          {{ $resolved := partial "helpers/resolve-src.html" (dict "page" $ "src" .) }}
+          {{ with $resolved }}
+            <div class="cover-media">
+              <img src="{{ . }}" alt="{{ $.Params.cover.alt | default $.Title }}" />
+            </div>
+          {{ end }}
+        {{ end }}
+        <div class="cover-text">
+          <h1>{{ .Title }}</h1>
+          {{ with $.Params.description }}
+            <p class="article-subtitle">{{ . }}</p>
+          {{ end }}
+          {{ with $.Params.cover.caption }}
+            <p class="caption">{{ . }}{{ with $.Params.cover.credit }} · <span class="credit">{{ . }}</span>{{ end }}</p>
+          {{ end }}
+        </div>
+      </div>
+
+      {{ with .Params.cover.image }}
+        <!-- Caption already rendered inside hero -->
+      {{ end }}
+
+      {{ with .PublishDate }}
+        <p><small>Published {{ .Format "02 Jan 2006" }}</small></p>
+      {{ end }}
+    </header>
+    <section>
+      {{ .Content }}
+    </section>
+  </article>
+  <p class="back-link"><a href="#top">Back to top</a></p>
+{{ end }}

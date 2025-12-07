@@ -1,0 +1,79 @@
+{{ define "main" }}
+  {{ $allPages := where .Site.RegularPages "Params.draft" "ne" true }}
+  {{ $recentPages := $allPages.ByDate.Reverse }}
+
+  <section class="hero">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}
+      <p class="lede">{{ . }}</p>
+    {{ end }}
+    {{ with .Content }}
+      <div class="hero-body">
+        {{ . }}
+      </div>
+    {{ end }}
+  </section>
+
+  <section class="status-grid">
+    <div class="status-card">
+      <h2>Latest Update</h2>
+      {{ if gt (len $recentPages) 0 }}
+        {{ $latest := index $recentPages 0 }}
+        {{ $timestamp := default $latest.PublishDate $latest.Date }}
+        <p class="status-title">
+          <a href="{{ $latest.RelPermalink }}">{{ $latest.Title }}</a>
+        </p>
+        <p class="status-meta">
+          {{ with $latest.Section }}In {{ title . }} · {{ end }}
+          {{ with $timestamp }}{{ .Format "02 Jan 2006" }}{{ end }}
+        </p>
+        {{ with $latest.Summary }}
+          <p>{{ . | plainify | truncate 50 }}</p>
+        {{ else }}
+          {{ with $latest.Params.description }}
+            <p>{{ . }}</p>
+          {{ end }}
+        {{ end }}
+      {{ else }}
+        <p>No updates yet. Add content under <code>content/</code> to populate this area.</p>
+      {{ end }}
+    </div>
+  </section>
+
+  {{ $sectionConfigs := slice
+      (dict "key" "projects" "title" "Projects" "description" "Work-in-progress builds.")
+      (dict "key" "certifications" "title" "Certifications" "description" "Forever Learning.")
+      (dict "key" "blog" "title" "Blog" "description" "Long-form writing, explainers, and deep dives.")
+      (dict "key" "journal" "title" "Journal" "description" "Day-to-day notes, reflections, and learning logs.")
+  }}
+
+  <section class="section-grid">
+    {{ range $sectionConfigs }}
+      {{ $sectionPage := $.Site.GetPage "section" .key }}
+      {{ if $sectionPage }}
+        <article class="section-card">
+          <header>
+            <h2>
+              <a href="{{ $sectionPage.RelPermalink }}">{{ .title }}</a>
+            </h2>
+            <p>{{ with $sectionPage.Params.summary }}{{ . }}{{ else }}{{ .description }}{{ end }}</p>
+          </header>
+          {{ $entries := $sectionPage.RegularPagesRecursive.ByDate.Reverse }}
+          {{ if ne .key "certifications" }}
+            {{ if gt (len $entries) 0 }}
+              <ul>
+                {{ range first 3 $entries }}
+                  {{ $entryDate := default .PublishDate .Date }}
+                  <li>
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    {{ with $entryDate }}<small> · {{ .Format "02 Jan 2006" }}</small>{{ end }}
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          {{ end }}
+        </article>
+      {{ end }}
+    {{ end }}
+  </section>
+{{ end }}

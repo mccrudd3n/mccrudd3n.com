@@ -1,0 +1,41 @@
+baseURL = 'https://mccrudd3n.com/'
+languageCode = 'en-us'
+title = 'Home'
+
+[params]
+  profileName = 'John McCrudden'
+  profileTagline = 'Running after my obsessions with everything I have; whilst taking notes. Do mind my spelling'
+  profilePhoto = 'images/profile-placeholder.png'
+  profileLinkedIn = 'https://www.linkedin.com/in/jmccrudden/'
+  profileGitHub = 'https://github.com/mccrudd3n'
+  profileEmail = 'john@mccrudd3n.com'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 10
+
+  [[menu.main]]
+    name = 'Projects'
+    url = '/projects/'
+    weight = 20
+
+  [[menu.main]]
+    name = 'Certifications'
+    url = '/certifications/'
+    weight = 30
+
+  [[menu.main]]
+    name = 'Blog'
+    url = '/blog/'
+    weight = 40
+
+  [[menu.main]]
+    name = 'Journal'
+    url = '/journal/'
+    weight = 50

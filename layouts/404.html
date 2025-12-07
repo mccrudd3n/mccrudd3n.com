@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <article>
+    <h1>Page not found</h1>
+    <p>Sorry, the page you were looking for doesn’t exist or may have moved.</p>
+    <p>
+      Try one of the main sections below, or head back to the home page to continue exploring.
+    </p>
+    <ul>
+      {{- $menu := .Site.Menus.main -}}
+      {{- if $menu -}}
+        {{- range $menu }}
+          <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+        {{- end -}}
+      {{- else -}}
+        <li><a href="{{ "/" | relLangURL }}">Home</a></li>
+      {{- end -}}
+    </ul>
+  </article>
+{{ end }}

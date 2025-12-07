@@ -1,0 +1,42 @@
+{{ define "main" }}
+  <article>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+      <div class="intro">
+        {{ . }}
+      </div>
+    {{ end }}
+
+    {{ $pages := .Pages.ByDate.Reverse }}
+    {{ if gt (len $pages) 0 }}
+      <ul>
+        {{ range $pages }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ with .Params.description }}
+              <small> — {{ . }}</small>
+            {{ end }}
+            {{ with .PublishDate }}
+              <small> · {{ .Format "02 Jan 2006" }}</small>
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      {{ $sectionName := "" }}
+      {{ if .IsSection }}
+        {{ $sectionName = printf "content/%s/" .Section }}
+      {{ else if .File }}
+        {{ $sectionName = printf "%s" .File.Dir }}
+      {{ else }}
+        {{ $sectionName = "content/" }}
+      {{ end }}
+      <p>
+        <em>
+          No entries available yet. Add Markdown files under <code>{{ $sectionName }}</code>.
+        </em>
+      </p>
+    {{ end }}
+  </article>
+  <p class="back-link"><a href="{{ "/" | relLangURL }}">← Back to Home</a></p>
+{{ end }}

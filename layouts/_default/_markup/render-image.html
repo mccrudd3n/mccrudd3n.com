@@ -1,0 +1,31 @@
+{{- $raw := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "resolved" "" -}}
+
+{{- with .Page }}
+  {{- with .Resources.GetMatch $raw }}
+    {{- $scratch.Set "resolved" .RelPermalink -}}
+  {{- else }}
+    {{- $trimmed := strings.TrimPrefix "./" $raw }}
+    {{- with .Resources.GetMatch $trimmed }}
+      {{- $scratch.Set "resolved" .RelPermalink -}}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- $resolved := $scratch.Get "resolved" -}}
+
+{{- if not $resolved }}
+  {{- if or (strings.HasPrefix $raw "http://") (strings.HasPrefix $raw "https://") }}
+    {{- $resolved = $raw -}}
+  {{- else if strings.HasPrefix $raw "/" }}
+    {{- $resolved = ($raw | relLangURL) -}}
+  {{- else }}
+    {{- $clean := strings.TrimPrefix "/" (strings.TrimPrefix "./" $raw) -}}
+    {{- $resolved = ((printf "/%s" $clean) | relLangURL) -}}
+  {{- end }}
+{{- end }}
+
+<img src="{{ $resolved | safeURL }}" alt="{{ $alt | safeHTMLAttr }}"{{ with $title }} title="{{ . | safeHTMLAttr }}"{{ end }} />
