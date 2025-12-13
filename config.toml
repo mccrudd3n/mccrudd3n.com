@@ -8,7 +8,8 @@ title = 'Home'
   profilePhoto = 'images/profile-placeholder.png'
   profileLinkedIn = 'https://www.linkedin.com/in/jmccrudden/'
   profileGitHub = 'https://github.com/mccrudd3n'
-  profileEmail = 'john@mccrudd3n.com'
+  profileEmail = '/contact/john.vcf'
+  profileVCard    = '/contact/john.vcf'
 
 [caches]
   [caches.images]
@@ -39,3 +40,8 @@ title = 'Home'
     name = 'Journal'
     url = '/journal/'
     weight = 50
+    
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
