@@ -8,8 +8,7 @@ title = 'Home'
   profilePhoto = 'images/profile-placeholder.png'
   profileLinkedIn = 'https://www.linkedin.com/in/jmccrudden/'
   profileGitHub = 'https://github.com/mccrudd3n'
-  profileEmail = '/contact/john.vcf'
-  profileVCard    = '/contact/john.vcf'
+  profileVCard    = '/static/contact/john.vcf'
 
 [caches]
   [caches.images]

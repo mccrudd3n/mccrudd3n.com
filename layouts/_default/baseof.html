@@ -198,7 +198,7 @@
         {{ $profileTagline := .Site.Params.profileTagline | default "Building, learning, and sharing progress in public." }}
         {{ $linkedin := .Site.Params.profileLinkedIn }}
         {{ $github := .Site.Params.profileGitHub }}
-        {{ $email := .Site.Params.profileEmail }}
+        {{ $email := .Site.Params.profileVCard }}
 
         <div class="profile">
           <h1>My Digital Footprint</h1>
@@ -248,8 +248,8 @@
             </a>
             {{- end }}
             {{- with $email }}
-            <a href="mailto:{{ . }}">
-              <span class="sr-only">Email</span>
+            <a href="{{ . }}" download="john.vcf">
+              <span class="sr-only">Contact Card</span>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 3v10m0 0l-4-4m4 4l4-4M5 21h14"
                   stroke="currentColor"
