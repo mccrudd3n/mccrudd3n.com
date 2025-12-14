@@ -131,8 +131,8 @@
       }
       .content-inner {
         width: 100%;
-        max-width: min(1200px, 100%);
-        margin: 0 auto;
+        max-width: 100%;
+        box-sizing: boarder-box;
       }
       .content-inner > h1:first-child {
         font-size: 2.2rem;
@@ -151,10 +151,10 @@
       .article-header .article-hero { position: relative; border-radius: 18px; overflow: hidden; min-height: 260px; background: #0f172a; color: #f8fafc; }
       .article-header .article-hero .cover-media { position: absolute; inset: 0; }
       .article-header .article-hero .cover-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.55) saturate(1.1); }
-      .article-header .article-hero .cover-text { position: absolute; inset: auto 0 0 0; padding: clamp(1.25rem, 4vw, 2.5rem); background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.75) 60%, rgba(15,23,42,0.98) 100%); display: grid; gap: 0.75rem; }
+      .article-header .article-hero .cover-text { position: absolute; inset: auto 0 0 0; padding: 5% 5% 2% 5%; background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.75) 60%, rgba(15,23,42,0.98) 100%); display: grid; gap: 0.75rem; }
       .article-header .article-hero h1 { margin: 0; font-size: clamp(1.9rem, 3vw, 3rem); line-height: 1.1; }
-      .article-header .article-hero .article-subtitle { margin: 0; font-size: 1.05rem; color: rgba(248,250,252,0.85); }
-      .article-header .article-hero .caption { margin: 0; font-size: 0.85rem; color: rgba(248,250,252,0.75); }
+      .article-header .article-hero .article-subtitle { margin: 0; font-size: clamp(0.9rem, 2.5vw, 1.05rem);color: rgba(248,250,252,0.85); }
+      .article-header .article-hero .caption { margin: 0; font-size: clamp(0.7rem, 2vw, 0.85rem); color: rgba(248,250,252,0.75); }
       .article-header .article-hero .caption .credit { font-style: italic; }
       .article-header .back-link { margin: 0; }
 
@@ -198,7 +198,11 @@
         {{ $profileTagline := .Site.Params.profileTagline | default "Building, learning, and sharing progress in public." }}
         {{ $linkedin := .Site.Params.profileLinkedIn }}
         {{ $github := .Site.Params.profileGitHub }}
-        {{ $email := .Site.Params.profileEmail }}
+        {{ $email := .Site.Params.profileVCard }}
+        {{ $vcardInline := "" }}
+        {{- with readFile "static/contact_card.vcf" }}
+          {{- $vcardInline = printf "data:text/vcard;charset=utf-8,%s" (urlquery .) }}
+        {{- end }}
 
         <div class="profile">
           <h1>My Digital Footprint</h1>
@@ -264,7 +268,6 @@
             </a>
           </div>
         {{- end }}
-      </aside>
 
       <main id="top">
         <div class="content-inner">

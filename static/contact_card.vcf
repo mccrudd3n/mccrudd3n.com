@@ -1,0 +1,28 @@
+BEGIN:VCARD
+VERSION:3.0
+KIND:individual
+
+N:McCrudden;John;;;
+FN:John McCrudden
+
+ORG:Aviagen
+TITLE:Pedigree Poultry Husbandry | Multilingual | Multi-skilled Engineer
+ROLE:Leadership and Management
+
+TEL;TYPE=CELL,VOICE:+447362283433
+TEL;TYPE=CELL,VOICE:+639544226170
+
+EMAIL;TYPE=WORK:john@mccrudd3n.com
+
+URL:https://mccrudd3n.com/c/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/jmccrudden/
+
+ADR;TYPE=WORK:;;;;;United Kingdom
+
+LANG:en
+CATEGORIES:Consulting,Engineering,Leadership,Agri-Tech
+
+NOTE:This contact is kept up to date at https://mccrudd3n.com/c/
+
+REV:20250101T120000Z
+END:VCARD

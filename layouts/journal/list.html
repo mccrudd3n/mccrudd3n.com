@@ -1,0 +1,151 @@
+{{ define "main" }}
+  <article class="cert-home">
+    <header class="cert-header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Content }}
+        <div class="intro">
+          {{ . }}
+        </div>
+      {{ end }}
+    </header>
+
+    {{ $sections := sort .Sections "Title" }}
+    {{ if gt (len $sections) 0 }}
+      <div class="cert-grid">
+        {{ range $sections }}
+          {{ $preview := first 10 (.RegularPages.ByDate.Reverse) }}
+          <section class="cert-block" id="{{ anchorize .Title }}">
+            <header>
+              <h2>{{ .Title }}</h2>
+              {{ with .Params.description }}
+                <p class="summary">{{ . }}</p>
+              {{ end }}
+            </header>
+            {{ if gt (len $preview) 0 }}
+              <ul class="cert-preview">
+                {{ range $preview }}
+                  <li>
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    {{ with .Params.cert.issuer }}
+                      <!-- <span class="issuer">— {{ . }}</span> -->
+                    {{ end }}
+                  </li>
+                {{ end }}
+              </ul>
+            {{ else }}
+              <p class="empty">Add certification notes under <code>{{ .File.Dir }}</code> to populate this block.</p>
+            {{ end }}
+            <!-- <p class="more">
+              <a href="{{ .RelPermalink }}">View all {{ .Title }} →</a>
+            </p> -->
+          </section>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p><em>No certification categories yet. Create folders under <code>content/journal/</code> with their own <code>_index.md</code>.</em></p>
+    {{ end }}
+  </article>
+
+  <style>
+    .cert-home {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
+      font-family: inherit;
+    }
+    .cert-header h1 {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      margin-bottom: 0.5rem;
+    }
+    .cert-header .intro {
+      color: #444;
+      line-height: 1.5;
+      display: block;
+      gap: 1rem;
+    }
+    .cert-header .intro blockquote {
+      background: #f8f9fa;
+      border-left: 4px solid var(--accent, #6366f1);
+      padding: 1rem 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: #1f2937;
+    }
+    .cert-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .cert-block {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 1.6rem;
+      display: block;
+      gap: 1rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .cert-block:hover,
+    .cert-block:focus-within {
+      border-color: rgba(79, 70, 229, 0.55);
+      box-shadow: 0 18px 32px rgba(79, 70, 229, 0.12);
+      transform: translateY(-2px);
+    }
+    .cert-block header h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #1f2937;
+    }
+    .cert-block header .summary {
+      margin: 0.4rem 0 0;
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+    .cert-preview {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+      gap: 0.6rem;
+    }
+    .cert-preview li {
+      font-size: 0.98rem;
+    }
+    .cert-preview a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .cert-preview a:hover,
+    .cert-preview a:focus-visible {
+      text-decoration: underline;
+    }
+    .cert-preview .issuer {
+      color: #6b7280;
+      font-size: 0.88rem;
+      margin-left: 0.4rem;
+    }
+    .empty {
+      margin: 0;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+    .more {
+      margin: 0;
+    }
+    .more a {
+      color: #4f46e5;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .more a:hover,
+    .more a:focus-visible {
+      text-decoration: underline;
+    }
+    @media (min-width: 640px) {
+      .cert-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+{{ end }}

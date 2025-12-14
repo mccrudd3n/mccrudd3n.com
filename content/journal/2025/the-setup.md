@@ -8,7 +8,7 @@ series:
   name: "Building in Public"
   part: 1
 cover:
-  image: "/images/journals/journal.jpg"
+  image: "/images/certifications/cert.jpg"
   alt: ""
   caption: "Just keep swimming..."
   credit: "Past, Present and AI Future self?"
