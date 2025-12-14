@@ -198,7 +198,7 @@
         {{ $profileTagline := .Site.Params.profileTagline | default "Building, learning, and sharing progress in public." }}
         {{ $linkedin := .Site.Params.profileLinkedIn }}
         {{ $github := .Site.Params.profileGitHub }}
-        {{ $email := .Site.Params.profileVCard }}
+        {{ $email := .Site.Params.profileEmail }}
 
         <div class="profile">
           <h1>My Digital Footprint</h1>
@@ -237,6 +237,8 @@
                 </svg>
               </a>
             {{- end }}
+
+            
             {{- with $github }}
             <a href="{{ . }}" target="_blank" rel="noopener">
               <span class="sr-only">GitHub</span>
@@ -262,6 +264,7 @@
             </a>
           </div>
         {{- end }}
+      </aside>
 
       <main id="top">
         <div class="content-inner">
