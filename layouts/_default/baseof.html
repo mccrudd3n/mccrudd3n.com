@@ -131,8 +131,8 @@
       }
       .content-inner {
         width: 100%;
-        max-width: min(1200px, 100%);
-        margin: 0 auto;
+        max-width: 100%;
+        box-sizing: boarder-box;
       }
       .content-inner > h1:first-child {
         font-size: 2.2rem;
@@ -151,10 +151,10 @@
       .article-header .article-hero { position: relative; border-radius: 18px; overflow: hidden; min-height: 260px; background: #0f172a; color: #f8fafc; }
       .article-header .article-hero .cover-media { position: absolute; inset: 0; }
       .article-header .article-hero .cover-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.55) saturate(1.1); }
-      .article-header .article-hero .cover-text { position: absolute; inset: auto 0 0 0; padding: clamp(1.25rem, 4vw, 2.5rem); background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.75) 60%, rgba(15,23,42,0.98) 100%); display: grid; gap: 0.75rem; }
+      .article-header .article-hero .cover-text { position: absolute; inset: auto 0 0 0; padding: 5% 5% 2% 5%; background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.75) 60%, rgba(15,23,42,0.98) 100%); display: grid; gap: 0.75rem; }
       .article-header .article-hero h1 { margin: 0; font-size: clamp(1.9rem, 3vw, 3rem); line-height: 1.1; }
-      .article-header .article-hero .article-subtitle { margin: 0; font-size: 1.05rem; color: rgba(248,250,252,0.85); }
-      .article-header .article-hero .caption { margin: 0; font-size: 0.85rem; color: rgba(248,250,252,0.75); }
+      .article-header .article-hero .article-subtitle { margin: 0; font-size: clamp(0.9rem, 2.5vw, 1.05rem);color: rgba(248,250,252,0.85); }
+      .article-header .article-hero .caption { margin: 0; font-size: clamp(0.7rem, 2vw, 0.85rem); color: rgba(248,250,252,0.75); }
       .article-header .article-hero .caption .credit { font-style: italic; }
       .article-header .back-link { margin: 0; }
 
@@ -252,22 +252,22 @@
             </a>
             {{- end }}
             {{- with $email }}
-            <a href="{{ if $vcardInline }}{{ $vcardInline }}{{ else }}{{ . }}{{ end }}">
-              <span class="sr-only">Save contact</span>
+            <a href="mailto:{{ . }}">
+              <span class="sr-only">Email</span>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 3v10m0 0l-4-4m4 4l4-4M5 21h14"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  fill="none"/>
-          </svg>
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.24l8 6.76 8-6.76V18H4z"/>
+              </svg>
             </a>
             {{- end }}
-            
+            <!-- Telegram @JMcCrudden -->
+            <a href="https://t.me/JMcCrudden" target="_blank" rel="noopener">
+              <span class="sr-only">Telegram</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.91 4.43 20.47.52a.83.83 0 0 0-1.07-.2L.52 9.03a.83.83 0 0 0-.07 1.54l4.49 1.67 2.22 7.38c.14.46.55.74.99.74.15 0 .3-.04.44-.12l3.17-2.1 4.58 3.52c.44.34 1.06.25 1.38-.2l4.92-10.6a.83.83 0 0 0-.53-1.13zM19.5 5.9l-11.88 7.5-2.5-.93L19.5 5.9zm-9.57 9.7 8.5-5.37-7.24 6.45-.55 2.45-1.71-3.53z"/>
+              </svg>
+            </a>
           </div>
         {{- end }}
-      </aside>
 
       <main id="top">
         <div class="content-inner">

@@ -6,9 +6,10 @@ lastmod: 2025-12-11
 draft: false
 tags: ["homelab", "security", "tailscale", "ansible", "cloudflare", "monitoring", "defense-in-depth"]
 cover:
-  image: "/images/projects/server-security-banner.jpg"
-  alt: "Four green Ansible pongs and a dark dashboard with OSSEC alerts"
-  caption: "When your entire fleet finally says pong and nothing is on fire."
+  image: "/images/projects/servers.jpg"
+  alt: ""
+  caption: "Homelab"
+  credit: "Past, Present and AI Future self?"
 toc: true
 featured: true
 ---

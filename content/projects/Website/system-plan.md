@@ -1,3 +1,7 @@
+---
+title: "System Plan"
+description: "Add Description"
+---
 # Automation & Layout Plan
 
 This document outlines how to automate content publishing with Obsidian and Hugo, and how to structure the website so visitors can quickly understand your work, certifications, learning journey, and day-to-day reflections.

@@ -5,8 +5,7 @@ date: 2025-11-16
 draft: false
 tags: ["genomics", "bioinformatics", "ethics", "DNA sequencing", "CRISPR"]
 cover:
-  image: "images/blog/02112025.jpg"
-  alt: "Illustration of DNA sequencing process"
+  image: "images/blog/PCR.jpg"
   caption: "DNA sequencing workflow"
   credit: "Coursera; Johns Hopkins University"
 toc: true
