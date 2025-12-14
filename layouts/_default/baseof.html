@@ -199,6 +199,10 @@
         {{ $linkedin := .Site.Params.profileLinkedIn }}
         {{ $github := .Site.Params.profileGitHub }}
         {{ $email := .Site.Params.profileVCard }}
+        {{ $vcardInline := "" }}
+        {{- with readFile "static/contact_card.vcf" }}
+          {{- $vcardInline = printf "data:text/vcard;charset=utf-8,%s" (urlquery .) }}
+        {{- end }}
 
         <div class="profile">
           <h1>My Digital Footprint</h1>
@@ -248,7 +252,7 @@
             </a>
             {{- end }}
             {{- with $email }}
-            <a href="{{ . }}">
+            <a href="{{ if $vcardInline }}{{ $vcardInline }}{{ else }}{{ . }}{{ end }}">
               <span class="sr-only">Save contact</span>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 3v10m0 0l-4-4m4 4l4-4M5 21h14"
