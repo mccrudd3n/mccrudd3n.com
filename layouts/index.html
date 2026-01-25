@@ -58,18 +58,24 @@
             </h2>
             <p>{{ with $sectionPage.Params.summary }}{{ . }}{{ else }}{{ .description }}{{ end }}</p>
           </header>
+
+          {{/* We use RegularPagesRecursive to ensure we grab everything 
+             inside the folder, including nested subfolders.
+          */}}
           {{ $entries := $sectionPage.RegularPagesRecursive.ByDate.Reverse }}
-            {{ if gt (len $entries) 0 }}
-              <ul>
-                {{ range first 3 $entries }}
-                  {{ $entryDate := default .PublishDate .Date }}
-                  <li>
-                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                    {{ with $entryDate }}<small> · {{ .Format "02 Jan 2006" }}</small>{{ end }}
-                  </li>
-                {{ end }}
-              </ul>
-            {{ end }}
+          
+          {{ if gt (len $entries) 0 }}
+            <ul>
+              {{ range first 3 $entries }}
+                {{ $entryDate := default .PublishDate .Date }}
+                <li>
+                  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                  {{ with $entryDate }}<small> · {{ .Format "02 Jan 2006" }}</small>{{ end }}
+                </li>
+              {{ end }}
+            </ul>
+          {{ else }}
+            <p><small>No entries found in {{ .title }}.</small></p>
           {{ end }}
         </article>
       {{ end }}
