@@ -1,6 +1,6 @@
 ---
 title: "🥇Certifications"
-summary: "Forever Learning - 184 Squadron"
+summary: "Forever Learning"
 description: "Browse credentials by domain, then drill into each certificate for highlights, evidence, and next steps."
 type: "certifications"
 ---

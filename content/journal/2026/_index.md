@@ -1,4 +1,4 @@
 ---
-title: "2025-The Setup"
+title: "2026-MiniLab Initialised"
 description: "Got to start somewhere!"
 ---

@@ -18,7 +18,7 @@ cert:
 cover:
   image: "images/certifications/cert.jpg"
   alt: "Certificate badge"
-featured: false
+featured: true
 ---
 
 ## Self-Reflection: The Art of the (*Almost*) Deal
