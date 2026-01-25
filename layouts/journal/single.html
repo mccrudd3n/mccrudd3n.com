@@ -16,13 +16,13 @@
         {{ end }}
         {{ with $cert.awarded }}
           <div>
-            <dt>Awarded</dt>
+            <dt>Published</dt>
             <dd>{{ . }}</dd>
           </div>
         {{ else }}
           {{ with .Date }}
             <div>
-              <dt>Awarded</dt>
+              <dt>Published</dt>
               <dd>{{ .Format "02 Jan 2006" }}</dd>
             </div>
           {{ end }}
