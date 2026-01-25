@@ -60,7 +60,7 @@
           </header>
           {{ $entries := $sectionPage.RegularPagesRecursive.ByDate.Reverse }}
           {{ if ne .key "certifications" }}
-            {{ if gt (len $entries) 0 }}
+            {{ if gt (len $entries) 3 }}
               <ul>
                 {{ range first 3 $entries }}
                   {{ $entryDate := default .PublishDate .Date }}
