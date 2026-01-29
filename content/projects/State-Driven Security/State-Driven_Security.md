@@ -117,7 +117,7 @@ This transforms the MOTD from a "Status Update" into a "Decision Support System.
 * **DNS Hardening:** Pi-hole refactored into **Host Mode** to enable per-client visibility via Tailscale IPs.
 * **Active Defense:** Automated "Privacy Noise" generation hitting 540k+ domains 24/7.
 
-GitHub repo: [mccrudd3n/server_security](https://github.com/mccrudd3n/server_security)
+GitHub repo: [mccrudd3n/Modular-MOTD-Health-System](https://github.com/mccrudd3n/Modular-MOTD-Health-System)
 
 ## Final Verdict
 Your homelab has evolved from a "Black Box" to a **Transparent State Machine**. By maximizing thinking through binary states, I have ensured that my finite human resources are spent on **building the future**, not **debugging the past**.
