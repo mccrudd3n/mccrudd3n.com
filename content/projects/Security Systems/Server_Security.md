@@ -2,113 +2,96 @@
 title: "Server-Side Security – A Living Journey"
 description: "Security is a process, not a state. This is my real-time, public notebook of turning four random machines into a hardened, monitored, and automated personal cloud."
 date: 2025-12-11
-lastmod: 2025-12-11
+lastmod: 2026-01-26
 draft: false
-tags: ["homelab", "security", "tailscale", "ansible", "cloudflare", "monitoring", "defense-in-depth"]
+tags: ["homelab", "security", "gluetun", "wireguard", "proxmox", "zfs", "privacy", "tailscale"]
 cover:
   image: "/images/projects/servers.jpg"
-  alt: ""
-  caption: "Homelab"
-  credit: "Past, Present and AI Future self?"
+  alt: "Server Rack"
+  caption: "Homelab Infrastructure"
+  credit: "Past, Present and AI Future self"
 toc: true
 featured: true
 ---
 
-## TL;DR – Current State (11 Dec 2025)
+## The Philosophy: Security as Discipline
 
-- Four machines (Lenovo laptop + home server + 2× Vultr) fully connected via Tailscale MagicDNS  
-- Unified username `username` everywhere  
-- Passwordless, key-only SSH (even on the weird one running SSH on 2222)  
-- Ansible control plane working with zero warnings  
-- Cloudflare proxy + DNS handling all public exposure  
-- Next phase → passive breach detection & response (already half built)
+Security is a fine balance between **following the process to stay secured** and having the **discipline to follow and maintain that process**. From my perspective, this also means that the more security you want, the more resources you will need. 
 
-GitHub repo (public, everything is in here):  
-https://github.com/mccrudd3n/server_security
+It is interesting that as much as I would like to build a system in which my behavior data is obfuscated, this requires a bigger overhead in terms of Hardware RAM and CPU. Within my home lab, these resources are finite. This hardware reality forced a pivot: to achieve high-level privacy without crippling the cluster, I transitioned from heavy browser-based automation to a surgical, lightweight web-probing script. Security in a constrained environment is about the discipline to optimize the process until it is sustainable.
 
-## Phase 1 – Complete (The Foundations)
+## TL;DR – Current State (26 Jan 2026)
 
-| Component              | Status   | Details                                                                 |
-|------------------------|----------|-------------------------------------------------------------------------|
-| Zero-trust network     | ✅     | Tailscale + MagicDNS (`blackhole`, `cloud99`, `production`, `home`)               |
-| Unified username       | ✅     | `username` on every box                                                 |
-| Key-only SSH           | ✅     | No passwords anywhere                                                   |
-| Ansible orchestration  | ✅     | Single `inventory.ini`, works even on non-standard ports                |
-| Public exposure        | ✅     | Only Cloudflare Tunnel / Proxy → no open ports on any machine           |
-| Firewalling            | ✅     | UFW only allows Tailscale subnet (100.64.0.0/10) + 80/443 where needed  |
+- **Infrastructure:** Four-node hybrid cluster unified via Tailscale. Added **Portainer** for visual orchestration.
+- **Privacy Stack:** Hardened Docker architecture using Gluetun (NordLynx) with location-hopping (Poland/US/UK).
+- **DNS Hardening:** Pi-hole refactored into **Host Mode** to enable per-client visibility via Tailscale IPs, bypassing ISP DNS locking.
+- **Active Defense:** Automated "Privacy Noise" generation via a lightweight Python scraper hitting 540k+ domains 24/7 with minimal resource impact (~30MB RAM).
 
-## Phase 2 – In Progress (Security Monitoring & Passive Prevention)
+GitHub repo: [mccrudd3n/server_security](https://github.com/mccrudd3n/server_security)
 
-Security is a process → I want to learn how the second something weird happens, I am alerted.
+## Phase 1 – Foundations & Storage Hardening (Complete)
 
-### Tools I’m looking to deploy (all free, all open-source)
+| Component                | Status | Details                                                                 |
+|--------------------------|--------|-------------------------------------------------------------------------|
+| Zero-trust network       | ✅      | Tailscale + MagicDNS integration for global encrypted access.           |
+| Unified Storage Path     | ✅      | 1.3TB ZFS RAID mounted to LXC 102 for Docker Root and heavy I/O.        |
+| Container Isolation      | ✅      | Decoupled LAN DNS (Pi-hole) from VPN-bound services (qBittorrent).      |
+| Secure Management        | ✅      | Portainer/Web UI hardening with SSL bypass and basic auth layers.       |
 
-| Tool                  | Purpose                                          | Deployment method          | Status     |
-|-----------------------|--------------------------------------------------|----------------------------|------------|
-| OSSEC (Atomic OSSEC)  | Host-based intrusion detection (file integrity, rootkits, log analysis) | Ansible playbook           | Running on all nodes |
-| Wazuh (fork of OSSEC) | Central manager + beautiful dashboard + active response | Docker on `production`     | Manager up, agents connected |
-| Fail2Ban              | Ban IPs after repeated failed logins             | Ansible                    | Done       |
-| CrowdSec              | Collaborative bouncer + modern fail2ban alternative | Ansible + central console  | Testing    |
-| UFW + nftables logging| Log dropped packets                              | Already active             | Done       |
-| Prometheus Node Exporter + Alertmanager | System metrics + alerting                     | Ansible                    | Next       |
+## Phase 2 – Privacy Architecture & Resource Optimization (In Progress)
 
-### Current detection capabilities (already live)
+I have pivoted to a **Dual-Network Strategy**. I utilize "Host Networking" for infrastructure services to ensure identity transparency, while wrapping "Consumer Services" in a VPN-silo.
 
-- Any change to `/etc/passwd`, `/etc/ssh/sshd_config`, or critical binaries → instant alert  
-- New user created → alert  
-- SSH brute-force attempts → auto-ban (Fail2Ban + CrowdSec)  
-- Rootkit signatures → alert  
-- Unexpected processes → alert  
-- All logs shipped in real-time to central Wazuh dashboard at `https://wazuh.production.mccrudd3n.com`
+### Current "Privacy Stack" (LXC 102)
 
-### Future additions (next 2 weeks)
+| Service          | Purpose                                   | Isolation Method                 | Resource Impact |
+|------------------|-------------------------------------------|---------------------------------|-----------------|
+| **Gluetun** | WireGuard (NordLynx) Gateway              | Primary Network Namespace       | Low             |
+| **qBittorrent** | P2P with Killswitch                       | Shares Gluetun Net-Namespace    | Medium          |
+| **Pi-hole** | Global Adblocking & Local DNS             | **Host Mode** (Tailscale Ready) | Low             |
+| **Noise-Gen** | Lightweight Python Obfuscator             | VPN-Isolated (via Gluetun)      | **Very Low** |
 
-| Feature                         | Tooling                             | Why it matters                              |
-|---------------------------------|-------------------------------------|---------------------------------------------|
-| Automated backups of OSSEC alerts | Rclone → encrypted off-site        | Even if attacker wipes logs, I still have them |
-| Honey pots                      | Cowrie SSH honeypot on a fake port  | Early warning + attacker fingerprinting     |
-| Canary tokens                   | Thinkst Canary on fake files        | Instant alert if someone reads them         |
-| Daily vulnerability scanning    | OpenVAS / Trivy (container)         | Know when I’m vulnerable               |
-| eBPF-based monitoring           | Falco or Tracee                     | Detect weird syscalls in real time          |
 
-## My Current Ansible Playbooks (public)
+
+### Detection & Monitoring Capabilities
+
+- **Traffic Camouflage:** The `noise-generator` script hits HaGeZi’s Ultimate blocklist domains via the VPN, poisoning tracking profiles with "junk" requests.
+- **Global Privacy Tunnel:** Tailscale "Override DNS" integration allows my mobile devices to tunnel DNS back to the Pi-hole from anywhere.
+- **Log Discipline:** Implemented Docker `json-file` rotation to cap logs at 10MB, ensuring the 24/7 noise generation doesn't lead to disk exhaustion.
+- **FIM (File Integrity Monitoring):** Wazuh alerts on changes to critical config files (`sshd_config`, `.env`).
+
+## Infrastructure Highlights
+
+### Tailscale + Pi-hole "Invisible" Integration
+By moving Pi-hole to `network_mode: host` and forcing `IPv6=false`, I eliminated the 2-second DNS latency loop. This allows Tailscale clients to appear as unique IPs rather than the generic Docker bridge gateway.
+
+### Resource-Aware Obfuscation
+The pivot from a Selkies-Firefox container to a `python:3.11-slim` script was a turning point. It proved that privacy doesn't have to be expensive if you have the discipline to refine the process.
 
 ```yaml
-# roles/common/tasks/main.yml
-- name: Unified user exists
-  user:
-    name: username
-    shell: /bin/bash
-    groups: sudo,docker
-    append: yes
+# Optimized Privacy Noise Config
+# Replaces heavy Firefox/Selenium with lightweight Python Requests
+noise-generator:
+  image: python:3.11-slim
+  container_name: noise-generator
+  network_mode: "service:gluetun"
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "3"
+  volumes:
+    - ./noise_profile:/app
+  entrypoint: sh -c "pip install requests && python noise_script.py"
+  restart: always
 
-- name: Deploy SSH key
-  authorized_key:
-    user: username
-    key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
-
-- name: Harden SSH
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PermitRootLogin'
-    line: 'PermitRootLogin prohibit-password'
-
-- name: Install and configure OSSEC agent
-  include_role:
-    name: ossec-agent
 ```
 
-Everything is idempotent, version-controlled, and tested.
+## Phase 3 – Future Defense-in-Depth (Next 30 Days)
 
-## P.S. – If you’re a friendly hacker reading this…
-
-Yes, I know this is public.  
-Yes, I want you to look.  
-If you spot a wee hole (misconfig, bad practice, exposed service, weak ACL, anything), please open an issue or DM me on john@mccrudd3n.com!  
-I learn fastest when someone actually breaks in (ethically) and tells me how.  
-I’ll credit you in the next blog post and buy you an ethernet coffee if our paths ever cross!
-
-Security is a process.  
-This document will never be “finished” — it will only get longer and greener.
-
-...Once the project is somewhat live, i will move this section into the blog or journal so that the projects section presents this project rather than my blabber!
+| Feature | Tooling | Why it matters |
+| --- | --- | --- |
+| **Unbound Deployment** | Recursive DNS | Removing dependence on upstream providers (1.1.1.1/8.8.8.8). |
+| **Vaultwarden** | Bitwarden API | Self-hosting credential management within the ZFS pool. |
+| **Fail2Ban for LXC** | IP Jailing | Hardening the Proxmox host against brute-force Tailscale peers. |
+| **Uptime Kuma** | Monitoring | Real-time status dashboards for the VPN tunnel and Noise-Gen health. |
