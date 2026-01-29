@@ -1,7 +1,7 @@
 ---
 title: "State-Driven Security: Building a Modular Nervous System"
 description: "Moving beyond log-reading: How I re-architected my homelab into a self-diagnosing state machine using a decoupled MOTD, root-privileged SSH defense, and binary-state logic."
-date: 2025-12-11
+date: 2026-01-29
 lastmod: 2026-01-29
 draft: false
 tags: ["homelab", "security", "bash", "architecture", "proxmox", "zfs", "automation"]
