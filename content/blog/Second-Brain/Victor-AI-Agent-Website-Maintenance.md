@@ -72,9 +72,9 @@ In the final review:
 - Detection, sync (rsync over hermes key to victor body), Hugo build + live nginx update, and GitHub commit/push (using the dedicated mccrudd3n site key + "Victor (Hermes Agent)" identity) are all handled by pure bash scripts with zero LLM involvement.
 - New scripts:
   - `detect-victor-changes.sh` — mtime + git log checks, marker-driven, safe for `no_agent` cronjobs.
-  - `victor-website-deploy.sh` — the automation engine. Syncs dev → victor source, runs `deploy.sh`, commits/pushes on both sides, updates marker.
+  - `victor-website-deploy.sh` — the automation engine (fully Victor-controlled in ~/.hermes/scripts/). Syncs dev → victor source, runs hugo --minify directly, commits/pushes on both sides, updates marker.
   - Updated wrapper for backward compatibility.
-- `deploy.sh` itself was modernized: now does `hugo --minify` only (nginx serves the `public/` in-place from the victor source dir). No unnecessary sudo copy.
+- Site-local deploy.sh has been removed by design. All build logic now lives inside the Victor-controlled `victor-website-deploy.sh` (in ~/.hermes/scripts/) so it can be freely read, modified, and enhanced.
 - The entire flow was exercised: detection → (post already present) → full deploy script run → live rebuild (214 pages) → commits on main and hermes → GitHub updated via the key.
 
 All future system changes (new skills like this one, SOUL updates, memory facts, cron improvements) will be detected with almost no tokens, summarized into a post using the skill (the main token spend), then automatically deployed and published.
