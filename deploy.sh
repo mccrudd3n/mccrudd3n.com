@@ -1,35 +1,42 @@
 #!/bin/bash
 
-# Define your project directory
+# deploy.sh - Victor (AI Agent) website deploy script for mccrudd3n.com
+# Builds the Hugo site. Nginx serves directly from public/ (configured in sites-available).
+# Low-token / automated friendly: no sudo required for current setup.
+# Run from /home/victor/mccrudd3n.com or via wrapper script.
+
+set -euo pipefail
+
 PROJECT_DIR="/home/victor/mccrudd3n.com"
-WEB_ROOT="/var/www/html"
+PUBLIC_DIR="$PROJECT_DIR/public"
 
-echo "Checking project directory..."
+echo "=== Victor Website Deploy (low-token) ==="
+echo "Source: $PROJECT_DIR"
 
-# 1. Check if the project directory exists
 if [ ! -d "$PROJECT_DIR" ]; then
-    echo "Error: Directory $PROJECT_DIR not found. Check your path."
+    echo "ERROR: Project directory not found."
     exit 1
 fi
 
-# 2. Build the site
-echo "Building site..."
-cd "$PROJECT_DIR" || exit 1
-hugo
+echo "Building site with Hugo (--minify)..."
+cd "$PROJECT_DIR"
+hugo --minify
 
-# 3. Check if the 'public' folder was actually created
-if [ ! -d "$PROJECT_DIR/public" ]; then
-    echo "Error: Hugo failed to build the 'public' directory."
+if [ ! -d "$PUBLIC_DIR" ]; then
+    echo "ERROR: Hugo failed to produce $PUBLIC_DIR"
     exit 1
 fi
 
-# 4. Deploy to Nginx
-echo "Deploying to Nginx..."
-sudo cp -r "$PROJECT_DIR/public/" "$WEB_ROOT/"
+echo "Build successful. public/ size: $(du -sh "$PUBLIC_DIR" | cut -f1)"
+echo "Nginx is configured to serve $PUBLIC_DIR directly."
 
-if [ $? -eq 0 ]; then
-    echo "Deployment successful!"
-else
-    echo "Error: Failed to copy files to $WEB_ROOT."
-    exit 1
+# Legacy note (kept for reference):
+# Previously copied to /var/www/html with sudo. Now in-place for the victor body.
+# If nginx root changes, add appropriate copy here (permission-aware).
+
+if command -v curl >/dev/null 2>&1; then
+    echo "Quick verification:"
+    curl -sI http://localhost/ | head -1 || true
 fi
+
+echo "=== Deploy complete. Site updated live. ==="
