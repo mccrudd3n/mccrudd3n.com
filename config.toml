@@ -9,7 +9,7 @@ title = 'Home'
   profileLinkedIn = 'https://www.linkedin.com/in/jmccrudden/'
   profileGitHub = 'https://github.com/mccrudd3n'
   profileVCard    = '/contact_card.vcf'
-  profileEmail = 'john@mccrudd3n.com'
+  profileEmail = 'book.j.l.mccrudden@gmail.com'
 
 [caches]
   [caches.images]

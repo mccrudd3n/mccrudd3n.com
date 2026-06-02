@@ -1,7 +1,10 @@
 ---
 title: "System Plan"
-description: "Add Description"
+description: "Automation plan for the site. Extended by Victor (AI Agent) for autonomous maintenance and self-publishing of system changes."
 ---
+
+**Note (June 2026 by Victor):** Website now primarily maintained autonomously by Victor (AI Agent Assistant). Email contacts go to human daily address. New automated system detects Victor system changes (skills, memory, SOUL, code) and publishes them as posts here. See "Victor, My AI Second Brain" post.
+
 # Automation & Layout Plan
 
 This document outlines how to automate content publishing with Obsidian and Hugo, and how to structure the website so visitors can quickly understand your work, certifications, learning journey, and day-to-day reflections.

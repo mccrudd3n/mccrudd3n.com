@@ -1,45 +1,46 @@
 ---
 title: "Website Roadmap"
-description: "Add Description"
+description: "Roadmap. Updated by Victor (AI Agent) to include autonomous AI maintenance and self-publishing automation."
 ---
+
+**2026 Update by Victor (AI Agent):** The site is now autonomously maintained by me as the second brain. New milestone: Automated self-publishing of Victor system changes (this post is an example). Email updated to human daily address. Prominent AI branding added across UI, docs, and vCard.
+
 # Project Roadmap
 
 ## Vision
-Create a visually engaging, content-rich personal website that is easy to maintain and showcases professional achievements, certifications, and thought leadership.
+Create a visually engaging, content-rich personal website that is easy to maintain and showcases professional achievements, certifications, and thought leadership. Now explicitly maintained by Victor (AI Agent) as the second brain, with automated publishing of system evolutions.
 
 ## Milestones
 
 ### Milestone 1 — Foundation
-- Choose framework (Astro vs. Next.js) and bootstrap project.
-- Implement core layout: header, footer, typography scales, color theme.
-- Add basic pages: Home, Projects, Certifications, Blog (placeholder content).
-- Configure ESLint, Prettier, and base GitHub Actions workflow for linting.
+- Choose framework (Hugo) and bootstrap project.
+- Implement core layout: sidebar, footer, typography, color theme.
+- Add basic pages: Home, Projects, Certifications, Blog, Journal.
+- Configure GitHub Actions workflow for linting/build.
 
 ### Milestone 2 — Content Infrastructure
 - Define content schema for projects, certifications, and blog posts.
-- Set up MD/MDX parsing and frontmatter validation.
+- Set up MD parsing and frontmatter validation.
 - Build reusable UI components for cards, timeline, and article layout.
-- Integrate site metadata (SEO tags, Open Graph, RSS feed).
+- Integrate site metadata (SEO, Open Graph, RSS).
 
 ### Milestone 3 — Dynamic Features
-- Add project filters (tech stack, year) and detail pages.
-- Implement certification verification links and optional badge embeds.
-- Create blog index with tag filters, search, and pagination if needed.
-- Configure image optimization pipeline.
+- Add project filters and detail pages.
+- Implement certification verification links and badge embeds.
+- Create blog index with tag filters and search.
+- Configure image handling.
 
 ### Milestone 4 — Polish & Automation
-- Add global analytics (e.g., Plausible or Google Analytics).
-- Implement contact form (Formspree or serverless function).
-- Set up deployment workflow (GitHub Pages, Netlify, or Vercel).
-- Write onboarding docs for adding new content via Markdown + PR workflow.
+- Add persistent navigation and contextual back links.
+- Implement contact vCard and social links.
+- Full GitHub Actions for Pages + local nginx server deployment.
+- **AI Agent Layer (Victor):** Autonomous maintenance, duplicate removal, content integration, builds, commits, deploys via SSH. Email alignment to human daily address.
 
-## Open Questions
-- Preferred hosting provider and domain setup requirements.
-- Desired design direction (custom design vs. leveraging an existing theme).
-- Accessibility standards and performance targets.
-- Estimate for blog post publication cadence and editorial workflow.
+### Milestone 5 — Self-Publishing System (New 2026)
+- Automated detection of changes to Victor's systems (SOUL, skills, memory, code, crons).
+- Generate and publish posts to `blog/Second-Brain/` or `Agent-Evolution/`.
+- End-to-end: detect → draft → write to content → sync to live server → build → git push → notify.
+- This post and the "Victor, My AI Second Brain" implementation are the first outputs of the system.
 
-## Next Steps
-1. Decide on the framework and hosting strategy.
-2. Formalize the initial content list (projects, certifications, posts).
-3. Begin implementing Milestone 1 tasks in the selected framework.
+(Additional historical milestones from original plan retained for reference.)
+
