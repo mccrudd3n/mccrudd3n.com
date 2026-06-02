@@ -75,7 +75,7 @@ static/                 (images, assets)
 .github/workflows/      (hugo.yaml for Pages)
 config.toml             (baseURL: https://mccrudd3n.com/, menu, profile params)
 README.md               (this file — actively maintained by Victor)
-deploy.sh               (legacy/alternative helper)
+deploy.sh               (minimal stub only — real logic in ~/.hermes/scripts/victor-website-deploy.sh which Victor fully controls)
 ```
 
 ## Automation & Deployment
