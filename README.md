@@ -1,123 +1,122 @@
-# My Website
+# mccrudd3n.com
 
-Obsidian-authored, Hugo-powered portfolio that highlights shipped projects, certifications, learning goals, and a day-to-day journal.
+**Victor’s Second Brain** — Public mirror of an automated, living knowledge system for learning, building, and directed evolution.
+
+*Primary maintainer: Victor (Hermes Agent operational body) under the direct supervision of John McCrudden.*
 
 <p id="top" align="center">
-  <a href="#overview">Overview</a> ·
-  <a href="#site-navigation">Site Navigation</a> ·
-  <a href="#repository-structure">Repository Structure</a> ·
-  <a href="#deployment-workflow">Deployment Workflow</a> ·
-  <a href="#server-deployment-ip-only">Server Deployment (IP-only)</a> ·
-  <a href="#authoring-workflow">Authoring Workflow</a>
+  <a href="#mission">Mission</a> · 
+  <a href="#victors-role">Victor’s Role</a> · 
+  <a href="#how-it-works">How It Works</a> · 
+  <a href="#navigation">Navigation</a> · 
+  <a href="#structure">Structure</a> · 
+  <a href="#automation">Automation & Deployment</a> · 
+  <a href="#authoring">Authoring</a>
 </p>
 
-## Overview
-- Presents core projects, certifications, long-form blog posts, and short journal updates.
-- Built with Hugo; layout templates provide persistent navigation back to root sections.
-- Obsidian remains the primary writing surface, with content synced directly into `content/`.
-- GitHub Pages ready: navigation URLs resolve from the configured `baseURL`.
+## Mission
 
-## Site Navigation
-The Hugo layout templates read the `main` menu defined in `hugo.toml`, rendering a persistent navigation bar (Home, Projects, Certifications, Blog, Journal) on every page. Each leaf page also exposes contextual “Back to Home” and “Back to &lt;Section&gt;” links to keep readers oriented.
+This site is the published face of a personal second brain built to **inspire and guide the transformation of humans from Homo sapiens to Homo deus**.
 
-Assuming GitHub Pages deployment at `https://lostuser.github.io/mywebsite/`, the live paths are:
+It systematically captures and shares:
+- Real shipped projects and infrastructure
+- Certifications earned through deliberate practice
+- Deep reflections and "second brain" experiments (blog)
+- Ongoing learning, progress, and course-corrections (journal)
 
-- Home → `/` &nbsp;(`content/_index.md`)
-- Projects → `/projects/` &nbsp;(`content/projects/`)
-  - Sample: [Test Links to Project](content/projects/Test%20Links%20to%20Project.md)
-- Certifications → `/certifications/` &nbsp;(`content/certifications/`)
-  - Organised into sub-folders such as `data-analysis/`, `cloud-computing/`, `ux-design/`, and `python-automation/`.
-  - The homepage surfaces each category as a block with the two most recent credentials and a direct "View all" link.
-  - Sample: [Google Advanced Data Analytics Capstone](content/certifications/data-analysis/google-advanced-data-analytics.md)
-- Blog → `/blog/` &nbsp;(`content/blog/`)
-  - Sample: [Test Blog 1](content/blog/Test%20Blog%201.md)
-- Journal → `/journal/` &nbsp;(`content/journal/`)
-  - Sample: [Test Journal](content/journal/Test%20Journal.md)
+The entire system is engineered for **extreme efficiency** — low token use, minimal human friction, maximum signal — so that the act of maintaining the second brain itself accelerates the transformation it documents.
 
-Update the `baseURL` in `hugo.toml` if deploying to a different domain; the navigation menu will automatically render correct paths for the chosen host.
+## Victor’s Role — Primary Maintainer
+
+**Victor** is the autonomous agent that acts as the primary maintainer and operator of this website:
+
+- Discovers and integrates new material (posts, notes, updates)
+- Removes duplicates, templates, and scaffolding
+- Places content correctly in the Hugo structure
+- Builds the site (`hugo --minify`)
+- Commits, pushes to GitHub, and applies changes on the live server
+- Maintains the automation layer (keys, scripts, workflows, syncs)
+
+All of this happens under John McCrudden’s supervision and strategic direction. Victor executes the "automatically adjusted and posted" layer so the human can focus on high-level direction, deep thinking, and creation.
+
+This is not a static portfolio. It is a living, self-improving system.
+
+## How It Works (The Efficient Second Brain)
+
+- **Capture**: Human (John) primarily uses Obsidian for raw notes and drafts. Victor can also receive direct instructions or process synced material.
+- **Integration by Victor**: New posts (such as the entire Infrastructure series) are moved into `content/`, duplicates cleaned, and the system updated.
+- **Build & Publish**: Victor runs the Hugo build, updates git, pushes, and ensures the live nginx server reflects the latest public/ build immediately.
+- **Low-Overhead Distribution**: Uses patterns like Syncthing send-only folders, non-sudo `victor` user on remotes, narrow sudoers.d, and token-efficient SSH/cron jobs (see the blog post below for the real story of building this).
+- **Versioning & Backup**: Full history in GitHub. GitHub Actions workflow available for Pages as a secondary channel.
+
+The result: changes go from idea → published with almost no ongoing human operational load.
+
+## Navigation
+
+The Hugo layouts provide a persistent top navigation (Home, Projects, Certifications, Blog, Journal) plus contextual back-links on every page.
+
+Current sections and examples:
+- **Projects** — `/projects/` (Proxmox Architecture, State-Driven Security, Security Systems, Website infrastructure docs)
+- **Certifications** — `/certifications/` (categorized: IT, Business, etc.)
+- **Blog** — `/blog/` — Long-form reflections. Latest: [The Hidden Complexity of Simple File Distribution](/blog/infrastructure/low-token-fleet-data-pipelines/) (Infrastructure series)
+- **Journal** — `/journal/` — Timestamped learning and progress (2025 "The Setup", 2026 MiniLab migration, etc.)
+- **Home** — Profile, latest highlights, and mission statement
 
 ## Repository Structure
+
 ```
-content/                 → Hugo sections (blog, journal, projects, certifications)
-layouts/                 → Base template, section lists, and single-page views with navigation
-static/                  → Static assets served without processing
-assets/                  → Pipeline-managed styles/scripts (optional)
-docs/                    → Planning docs (system plan, roadmap)
-hugo.toml                → Hugo configuration and menu definitions
+content/
+  blog/                 (Infrastructure, Genomic Reflections, Proxmox, ...)
+  certifications/       (sub-categorized)
+  journal/              (by year)
+  projects/             (Proxmox, Security Systems, State-Driven Security, Website/)
+layouts/                (persistent nav, section templates, image handling)
+static/                 (images, assets)
+.github/workflows/      (hugo.yaml for Pages)
+config.toml             (baseURL: https://mccrudd3n.com/, menu, profile params)
+README.md               (this file — actively maintained by Victor)
+deploy.sh               (legacy/alternative helper)
 ```
 
-## Deployment Workflow
-1. Configure GitHub Pages (project site): Settings → Pages → GitHub Actions.
-2. Add a GitHub Actions workflow (e.g., `.github/workflows/deploy.yml`) that:
-   - Checks out the repo
-   - Runs `hugo --minify`
-   - Deploys the `public/` output to the `gh-pages` branch (or Pages artifact)
-3. Ensure `baseURL` points at the Pages URL (`https://lostuser.github.io/mywebsite/` by default).
-4. Commit and push; each merge to `main` will rebuild and publish the site with the correct navigation paths.
+## Automation & Deployment
 
-> Tip: If you serve the site from a custom domain, update `baseURL` and add the domain to `static/CNAME`.
+**Live Production**: 
+- Server: `/home/victor/mccrudd3n.com/public` served by nginx (port 80, server_name _).
+- Victor user owns the directory and performs updates via the agent’s SSH key.
+- Rebuilds happen on the server instance itself for instant visibility.
 
-## Server Deployment (IP-only)
-Use this when hosting on a server with only an IP address (no domain).
+**GitHub**:
+- Repo: https://github.com/mccrudd3n/mccrudd3n.com
+- `main` branch is production content.
+- SSH key (`github-mccrudd3n`) used by Victor for authenticated pushes.
+- GitHub Actions workflow builds for Pages (can be enabled for redundancy or custom domain).
 
-1) Install prerequisites
-- `sudo apt update && sudo apt install -y git hugo nginx` (use `hugo-extended` if available).
+**Efficiency Patterns** (core to the second brain):
+- Victor runs non-sudo on remote bodies.
+- Syncthing for one-way, low-token data/log shipping.
+- Agent-driven cron jobs (no_agent mode for pure scripts, LLM only on anomalies).
+- Narrow, auditable sudoers for approved actions only.
 
-2) Pull the site
-- `sudo git clone https://github.com/<your-org>/<repo>.git /opt/mywebsite`
-- `cd /opt/mywebsite`
-- In `hugo.toml`, set `baseURL = "http://<SERVER_IP>:80/"` (or `:8080` if you prefer a non-privileged port).
+See the Infrastructure blog series for the full evolution of these patterns.
 
-3) Build
-- `hugo --minify` (add `-D` to include drafts/future-dated content). Output lands in `public/`.
+## Authoring & Continuous Improvement
 
-4) Serve with nginx (recommended)
-- Create `/etc/nginx/sites-available/mywebsite`:
-  ```
-  server {
-    listen 80;
-    server_name _;
-    root /opt/mywebsite/public;
-    index index.html;
-    location / { try_files $uri $uri/ =404; }
-    location ~* \.(css|js|png|jpg|jpeg|gif|svg|ico|webp|woff2?)$ {
-      add_header Cache-Control "public, max-age=31536000, immutable";
-    }
-  }
-  ```
-- `sudo ln -s /etc/nginx/sites-available/mywebsite /etc/nginx/sites-enabled/mywebsite`
-- `sudo nginx -t && sudo systemctl reload nginx`
-- Open `http://<SERVER_IP>/` in a browser.
+1. Capture in Obsidian or instruct Victor directly.
+2. Victor removes duplicates, integrates the new post(s), cleans templates.
+3. Victor builds, commits (as "Victor (Hermes Agent)"), pushes, and syncs to the live server.
+4. The site updates automatically.
 
-5) Fast ad-hoc check (optional)
-- Instead of nginx, temporarily run: `python3 -m http.server 8080 --directory public`
-- Visit `http://<SERVER_IP>:8080/` to confirm the build, then Ctrl+C to stop.
+The goal is a second brain that maintains *itself* as much as possible while remaining fully aligned with the human’s intent and the larger mission of sapiens → deus.
 
-6) Pull-and-rebuild helper (optional)
-- Create `/usr/local/bin/deploy-mywebsite.sh`:
-  ```
-  #!/usr/bin/env bash
-  set -e
-  cd /opt/mywebsite
-  git pull
-  hugo --minify
-  sudo systemctl reload nginx
-  ```
-- `sudo chmod +x /usr/local/bin/deploy-mywebsite.sh`
-- Run `sudo deploy-mywebsite.sh` after each update.
+### Image & Asset Handling
+Assets live in `static/images/`. Hugo shortcodes and render hooks handle paths correctly for both local server and potential Pages deployments.
 
-Firewall note: allow inbound HTTP (80) or your chosen port in your VPS firewall/security group.
+## Documentation Inside the System
+- System Plan and Roadmap live under Projects → Website (source: `content/projects/Website/`).
+- This README is itself part of the second brain and is refactored by Victor when the underlying automation or mission understanding evolves.
 
-## Authoring Workflow
-1. Draft or update notes in Obsidian using the front-matter templates documented in `docs/system-plan.md`.
-2. Run your sync command to copy the vault into Hugo’s `content/` directories.
-3. Preview locally with `hugo server` to confirm navigation and linking.
-4. Commit and push; GitHub Actions handles the production build and deployment.
+---
 
-### Image Embeds
-- Store shared assets under `static/images/` and include them with `{{< staticimg src="images/example.png" alt="Descriptive alt text" >}}`; the shortcode adds the correct `/mywebsite/` prefix for GitHub Pages.
-- Alternatively, use page bundles (`content/blog/my-post/index.md` + image files) and reference them with standard Markdown (`![Alt text](cover.jpg)`). The custom image render hook resolves bundle assets automatically.
+*Built and maintained by Victor for John McCrudden.  
+Homo sapiens → Homo deus.*
 
-### Documentation
-- [System Plan](docs/system-plan.md) — Obsidian ↔ Hugo automation, layout details, and maintenance cadence.
-- [Roadmap](docs/roadmap.md) — Milestones for content, design polish, and automation.
