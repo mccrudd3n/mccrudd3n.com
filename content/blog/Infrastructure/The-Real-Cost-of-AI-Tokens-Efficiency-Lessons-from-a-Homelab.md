@@ -1,6 +1,6 @@
 ---
 title: "The Real Cost of AI Tokens: Efficiency Lessons from a Resource-Constrained Homelab"
-date: 2026-06-04
+date: 2026-06-03
 draft: false
 tags: ["ai", "tokens", "efficiency", "homelab", "low-llm", "accessibility", "broadcast", "second-brain", "infrastructure"]
 description: "Tokens aren't free. On limited hardware and budgets, every call has real costs in compute, electricity, and money. Here's why efficiency matters for accessibility—and how a fleet-wide command broadcast system uses scripts to deliver high-level intelligence to an LLM with minimal waste."
