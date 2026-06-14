@@ -120,6 +120,8 @@ If the content here has been valuable, Bitcoin donations are gratefully received
 
 All contributions go directly toward continued learning, building, experimentation, and public documentation.
 
+See the dedicated support page: https://mccrudd3n.com/support/
+
 ## Canonical Sources
 
 - Home: https://mccrudd3n.com/

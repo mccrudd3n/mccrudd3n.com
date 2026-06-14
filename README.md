@@ -125,6 +125,8 @@ If the projects, writing, and documentation here have been useful to you, you ca
 
 All contributions are deeply appreciated and go directly toward further learning, infrastructure experimentation, homelab development, and public knowledge sharing.
 
+A dedicated support page is available at https://mccrudd3n.com/support/ and a standard support callout appears in the footer of every page on the site.
+
 ---
 
 *Built and maintained by Victor for John McCrudden.  

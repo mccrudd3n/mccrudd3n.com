@@ -41,6 +41,11 @@ title = 'Home'
     url = '/journal/'
     weight = 50
     
+  [[menu.main]]
+    name = 'Support'
+    url = '/support/'
+    weight = 60
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

@@ -238,7 +238,6 @@
                 </svg>
               </a>
             {{- end }}
-
             
             {{- with $github }}
             <a href="{{ . }}" target="_blank" rel="noopener">
@@ -270,6 +269,8 @@
       <main id="top">
         <div class="content-inner">
           {{ block "main" . }}{{ end }}
+
+          {{ partial "support-footer.html" . }}
 
           <footer class="site-footer">
             <div class="footer-nav">
