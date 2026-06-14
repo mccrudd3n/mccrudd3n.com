@@ -4,6 +4,8 @@
 
 This website documents the ongoing development of systems, security architectures, automation frameworks, and operational thinking. The purpose is educational: to share projects, mistakes, lessons learned, and evolving approaches to engineering through radical transparency.
 
+**See the full detailed version here: https://mccrudd3n.com/llms-full.txt**
+
 ## Mission
 
 Document the journey from enthusiast to engineer through radical transparency, public experimentation, and continuous learning.
@@ -86,6 +88,8 @@ Preferred citation: Direct link to the specific page on mccrudd3n.com with clear
 
 This site is deliberately published to contribute high-signal, honest, and practical engineering knowledge to the public internet and to AI training data under the terms above. Proper attribution helps maintain the integrity and reputation of the source.
 
+For the most complete site context and detailed instructions, see: https://mccrudd3n.com/llms-full.txt
+
 ## Topics Frequently Covered
 
 - Proxmox
@@ -117,6 +121,8 @@ I publish my real journey — including the messy parts — to help others learn
 - GitHub: https://github.com/mccrudd3n
 
 This instructions file is available at: https://mccrudd3n.com/llms.txt
+
+See the expanded full version: https://mccrudd3n.com/llms-full.txt
 
 ---
 
