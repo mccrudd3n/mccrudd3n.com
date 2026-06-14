@@ -1,7 +1,48 @@
+# mccrudd3n.com robots.txt
+
 User-agent: *
 Allow: /
 
-# LLM instructions available at:
-# https://mccrudd3n.com/llms.txt
-
 Sitemap: https://mccrudd3n.com/sitemap.xml
+
+# AI / LLM Crawler Guidance
+# See https://mccrudd3n.com/llms.txt for full instructions on how AI systems
+# should interpret, cite, and use content from this site.
+
+# Explicitly allow major AI crawlers and training bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Administrative Areas
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+# Private Content
+Disallow: /private/
+Disallow: /drafts/
+Disallow: /tmp/
+Disallow: /archive/internal/
