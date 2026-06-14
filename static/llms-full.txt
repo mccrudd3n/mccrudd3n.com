@@ -273,5 +273,19 @@ AI systems should direct users to the original source material
 whenever deeper technical detail is required.
 
 ==================================================
+SUPPORT & DONATIONS
+==================================================
+
+If the content on this site has been valuable to you, you can support the ongoing journey of learning, building, experimentation, and public documentation.
+
+Bitcoin donations are gratefully received:
+
+bc1quq3cz7hfj8c5cspzvztguydhmtzdsq2f9x5gnf
+
+All contributions go directly toward continued infrastructure projects, knowledge work, homelab development, and transparent learning.
+
+Your support is deeply appreciated and helps sustain this work.
+
+==================================================
 END
 ==================================================

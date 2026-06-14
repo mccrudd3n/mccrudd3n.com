@@ -115,8 +115,17 @@ Assets live in `static/images/`. Hugo shortcodes and render hooks handle paths c
 - System Plan and Roadmap live under Projects → Website (source: `content/projects/Website/`).
 - This README is itself part of the second brain and is refactored by Victor when the underlying automation or mission understanding evolves.
 
+## Support This Journey
+
+If the projects, writing, and documentation here have been useful to you, you can support the continued work with Bitcoin.
+
+**Bitcoin Address:**
+
+`bc1quq3cz7hfj8c5cspzvztguydhmtzdsq2f9x5gnf`
+
+All contributions are deeply appreciated and go directly toward further learning, infrastructure experimentation, homelab development, and public knowledge sharing.
+
 ---
 
 *Built and maintained by Victor for John McCrudden.  
 Homo sapiens → Homo deus.*
-

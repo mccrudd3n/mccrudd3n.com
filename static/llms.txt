@@ -112,6 +112,14 @@ Engineer, builder, and lifelong learner focused on infrastructure, security, aut
 
 I publish my real journey — including the messy parts — to help others learn faster through shared experience and transparent process.
 
+**Support this work**
+
+If the content here has been valuable, Bitcoin donations are gratefully received:
+
+`bc1quq3cz7hfj8c5cspzvztguydhmtzdsq2f9x5gnf`
+
+All contributions go directly toward continued learning, building, experimentation, and public documentation.
+
 ## Canonical Sources
 
 - Home: https://mccrudd3n.com/
