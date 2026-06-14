@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# LLM instructions available at:
+# https://mccrudd3n.com/llms.txt
+
+Sitemap: https://mccrudd3n.com/sitemap.xml
