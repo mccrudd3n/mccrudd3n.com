@@ -1,5 +1,8 @@
 ---
 title: "Support This Work"
+sitemap:
+  changefreq: "weekly"
+  priority: 0.8
 ---
 
 # Support This Work

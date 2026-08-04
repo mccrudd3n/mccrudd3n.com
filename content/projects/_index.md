@@ -3,6 +3,9 @@ title: "Projects"
 summary: "An overview of current projects, private data pipelines, and public open-source learning logs I plan to document."
 description: "A list of technical and developmental projects slated for upcoming posts, covering data analysis, blockchain, and systems programming, presented to share methodology, insights, and lessons learned."
 type: "projects"
+sitemap:
+  changefreq: "weekly"
+  priority: 0.9
 ---
 
 ## 📝 Purpose and Objectives

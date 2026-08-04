@@ -3,6 +3,9 @@ title: "Journal"
 summary: "Day-to-day notes, reflections, and learning logs — a practical system for tracking thinking, progress, and patterns over time."
 description: "A working journal for daily reflections, personal reviews, and learning logs, paired with lightweight systems that make self-tracking actionable rather than performative."
 type: "journal"
+sitemap:
+  changefreq: "weekly"
+  priority: 0.9
 ---
 
 ## A Working Journal, Not a Diary

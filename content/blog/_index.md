@@ -3,6 +3,9 @@ title: "Blog"
 summary: "Learning by teaching — long-form explainers, deep dives, and reflections that turn knowledge into understanding."
 description: "A space for long-form writing where I teach what I’ve learned, explore ideas in depth, and document a growing body of personal knowledge — with an eye toward responsibly training a future personal LLM."
 type: "blog"
+sitemap:
+  changefreq: "weekly"
+  priority: 0.9
 ---
 
 ## Knowledge, Learning, and the Responsibility to Implement

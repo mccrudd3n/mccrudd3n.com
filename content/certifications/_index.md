@@ -3,6 +3,9 @@ title: "🥇Certifications"
 summary: "Forever Learning"
 description: "Browse credentials by domain, then drill into each certificate for highlights, evidence, and next steps."
 type: "certifications"
+sitemap:
+  changefreq: "weekly"
+  priority: 0.9
 ---
 ## *Forever Learning - 184 Sqn*
 A motto etched into my core as an Air Cadet.
