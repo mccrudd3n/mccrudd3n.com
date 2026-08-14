@@ -1,5 +1,5 @@
 ---
-title: "From Military Logistics to Offshore Energy: What the IWCF Level 1 Programme Taught Me"
+title: "From Aircraft Engineering to Offshore Energy: What the IWCF Level 1 Programme Taught Me"
 date: 2026-07-10
 draft: false
 tags: ["Journal", "Career", "Offshore Energy", "IWCF", "Learning", "Military Background", "Certification"]
@@ -13,7 +13,7 @@ Several people recommended the International Well Control Forum (IWCF) Level 1 P
 
 #### Why I Took the Course
 
-Coming from a military logistics background, I’ve spent my career managing operations, people, risk, and planning under pressure. Many of those skills are transferable, but offshore energy has its own language, processes, and technical foundations.
+Coming from an aircraft engineering background, I’ve spent my career managing engineering problems, risk, and planning under pressure. Many of those skills are transferable, but offshore energy has its own language, processes, and technical foundations.
 
 Rather than trying to absorb everything through conversations alone, I wanted a proper introduction that would help me see the bigger picture before diving into specialist areas. The IWCF Level 1 Programme delivered exactly that.
 
